@@ -1,4 +1,4 @@
-This is a port to SDL2 of an obscure and strange game from the early 2000's called Frogs of War 2 by Linus Sphinx. It has also been upgraded to use GNU Autotools to build
+This is a port to SDL2 of an obscure and strange game from the early 2000's for Linux called Frogs of War 2 by Linus Sphinx. It has also been upgraded to use GNU Autotools to build
 
 to build:
 ./autogen.sh
@@ -6,7 +6,7 @@ to build:
 make
 
 to install:
-make install
+(sudo) make install
 
 Below are the contents of the readme from the original Author
 
@@ -53,16 +53,16 @@ exact center can be very challenging, good luck.
 ------------
 KEYBOARD CONTROLS
 
-F1 help
-F2 story so far
-F3 helpful hints and tips
-F4 toggles racket
-F5 toggles background music 
-F6 - F7 control volume
-F9 displays player roster
-left/right turns/speeds up/slows down/stops
-up/down jumps/dives
-left-control fires
-left-shift changes
+- F1 help
+- F2 story so far
+- F3 helpful hints and tips
+- F4 toggles racket
+- F5 toggles background music 
+- F6 - F7 control volume
+- F9 displays player roster
+- left/right turns/speeds up/slows down/stops
+- up/down jumps/dives
+- left-control fires
+- left-shift changes
 
 
