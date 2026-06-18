@@ -1,0 +1,33 @@
+# --- compiled output ---
+src/frogs
+src/*.o
+src/frogs-*.o
+frogs
+
+# --- autoconf / configure output ---
+config.log
+config.status
+configure~
+
+# --- automake auxiliary scripts (installed by autoreconf -i) ---
+aclocal.m4
+compile
+depcomp
+install-sh
+missing
+
+# --- generated Makefiles (re-created by ./configure) ---
+Makefile
+Makefile.in
+src/Makefile
+src/Makefile.in
+
+# --- generated configure script (re-created by ./autogen.sh) ---
+configure
+
+# --- automake dependency tracking ---
+src/.deps/
+
+# --- editor backups and swap files ---
+*~
+*.swp

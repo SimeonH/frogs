@@ -1,0 +1,12 @@
+Elf Linkages Portion Of The Elf Sprite Description Language
+               as specified by Linus Sphinx
+linkages.txt in the bitmap directory contains the links between sprites that make up an
+elf. An elf consists of three sprites each representing the birth, life and death of the
+elf. The sprite numbers are from the tank.txt file and the elf number is merely unique
+to the other elves as in:
+<elf id>:<birth>,<life>,<death>
+2:34,2,3
+3:3,4,5
+elves may share sprites just as sprites may share frames. Tank.txt describes sprites, 
+linkages.txt describes the sprites change from one to another as the sprite representing
+each phase's time-to-live expires.

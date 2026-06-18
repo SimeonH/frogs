@@ -1,0 +1,39 @@
+
+Frogs Of War by Li/nus Sphinx
+http://fullsack.com
+
+un-tar the archive file as in:
+	tar xvfz fow-X.Y-tar.gz
+
+this will create the main program directory - this is where the frogs executable goes: 
+
+	frogs/ - frogs compiled binary here
+
+and beneath that:
+
+	frogs/bmp - images and .elf files here
+	frogs/wav - sounds and .elf file here
+	frogs/doc - robot files, help and docs here
+	frogs/src - source code and make file here
+
+There is a pre-compiled binary there just cd /frogs and run ./frogs for command line help.
+If that should fail to find your libraries for whatever distro you're running, you can 
+make sure the program sdl-config that comes with libSDL is in your path, change to the 
+frogs/src directory and execute:
+
+#start fresh
+make clean
+
+#build the program
+make
+
+#put it in the right spot
+cp frogs ..
+
+#go there
+cd .. 
+
+# test
+./frogs
+
+

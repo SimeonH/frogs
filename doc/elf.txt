@@ -1,0 +1,44 @@
+                     The ELF Sprite Programming Language 
+                             for EGA Life Forms
+                         as described by Linus Sphinx
+
+A text file of, "elf", is used to describe and, "cut up", a bitmap. The two files are
+combined at runtime to produce a video game or simulation and allow for easy adjustment of
+animation sequences, solid surface simulation, sound linking and chaining of events without
+recompiling the interpeter.
+
+Elf consists of the letters, "eqsfr", pound sign, forward slash, numbers, colons and commas 
+arranged as:
+
+#:numberofspritesinthisfile,maxyrows,maxxcols,numberof_floorsinthisfile
+e:mapX,mapY,layerZ,opaque,type,framecount,direction,speed,flipspeed,timetolive,sound,palette
+q:frameleft,frametop,frameright,framebottom
+q:frameleft,frametop,frameright,framebottom
+q:frameleft,frametop,frameright,framebottom
+s:count:xincrement,yincrement
+f:mapx,mapy,length
+
+commands are
+        # - count of actual sprites including all steps and elfs max_x, max_y, total floors
+        e - elf/sprite
+        q - source quadrangle one for each framecount in elf command
+        s - step - repeat for count times of x and y increments
+        f - floor - a line forming a solid walking surface
+        // - rest of line is a comment
+        
+        not yet implemented:
+        r - rotate source quadrangle x degrees 
+            
+commands should be in the order shown if only for your own sanity
+the count command comes first in the file and appears only once
+elf speed is the number of pixels to jump, flipspeed is the number of page flips between frame
+changes
+direction is in the number according to the keypad, 5 is standing still
+framecount source quadrangles must follow each elf
+a step must be preceded by an elf/quadrangles combination, starts where it's elf was and repeats
+at +x and +y intervals creating elfs in mass with all properties equal except x and y values.
+player/tank sprites use mapX and mapY as plus or minus the player x and y and layer 5.
+layers are 0 to 9 with 0 representing the background, missles are layer 6, foreground layer 9.
+sound is a value referencing the line number starting at the second wave command in the 
+wav/racket.txt file - 0 = no sound (0 is the background music)
+palette is 0 normal 1 red 2 green 3 blue non zero only valid for type 5 tanks
