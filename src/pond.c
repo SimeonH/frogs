@@ -23,17 +23,22 @@
 //--------------------------------------------------------------------------------
 #include <stdio.h>
 #include <stdlib.h>
-#include <pthread.h>
-#include <unistd.h>
-#include <signal.h>
 #include <string.h>
 #include <errno.h>
-#include <sys/types.h> 
-#include <sys/socket.h> 
-#include <arpa/inet.h>
-#include <netinet/in.h>
-#include <netdb.h>
-#include <fcntl.h>
+#ifdef _WIN32
+#  include <winsock2.h>
+#  include <ws2tcpip.h>
+#  define sock_close(s) closesocket(s)
+#else
+#  include <unistd.h>
+#  include <sys/types.h>
+#  include <sys/socket.h>
+#  include <arpa/inet.h>
+#  include <netinet/in.h>
+#  include <netdb.h>
+#  include <fcntl.h>
+#  define sock_close(s) close(s)
+#endif
 #include <SDL.h>
 #include "frogs.h"
 #include "util.h"
@@ -532,13 +537,13 @@ void ponddestroy( void )
 	if ( Server.sock > 0  )
 	{
 		fprintf( stderr, "pond splash destroyed\n" );
-		close( Server.sock );
+		sock_close( Server.sock );
 		Server.sock = -1;
 	}
 	if ( Client.sock > 0 )
 	{
 		fprintf( stderr, "pond ripple destroyed\n" );
-		close( Client.sock );
+		sock_close( Client.sock );
 		Client.sock = -1;
 	}
 	tankdestroy();
@@ -547,22 +552,23 @@ void ponddestroy( void )
 // --------------------------------------------------------------------
 // pondsplash main server thread 
 // --------------------------------------------------------------------
-void *pondsplash( void *ptarg )
+int pondsplash( void *ptarg )
 {
+	(void)ptarg;
 	atexit( ponddestroy );
-		
+
 	if( ! pondserverinit())
 	{
 		while( pondsplashupdate() >= 0 )
 			;
 	}
-	return( ptarg );
+	return( 0 );
 }
 
 // --------------------------------------------------------------------
 // pondripple main client thread 
 // --------------------------------------------------------------------
-void *pondripple( void *ptarg )
+int pondripple( void *ptarg )
 {
 	int i, dude, retries = 3;
 	char *host = (char*)ptarg;
@@ -604,7 +610,7 @@ void *pondripple( void *ptarg )
 		fprintf( stderr, "ripple to %s failed\n", host );
 		exit( -1 );
 	}
-	return( ptarg );
+	return( 0 );
 }
 // --------------------------------------------------------------------
 //

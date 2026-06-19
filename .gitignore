@@ -4,6 +4,9 @@ src/*.o
 src/frogs-*.o
 frogs
 
+# --- cmake build directory ---
+build/
+
 # --- autoconf / configure output ---
 config.log
 config.status

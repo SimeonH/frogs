@@ -23,7 +23,6 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <string.h>
-#include <pthread.h>
 #include <SDL.h>
 #include <SDL_mixer.h>
 #include "frogs.h"
@@ -65,8 +64,8 @@ char Bots[80] = PKGDATADIR "/doc/robots1.txt";
 // -- pond 
 FROGCOMMAND Cmd; 
 int Nrate = 125; // default network time cycle 
-pthread_t pondd; 
-pthread_t pondc; 
+SDL_Thread *pondd;
+SDL_Thread *pondc;
 
 /* unsigned short far Draghand[ 32 ] = // mouse cursor hot spot 0 0
 {
@@ -713,9 +712,9 @@ int main( int argc, char **argv )
 		{
 			fprintf( stderr, "using port: %d\n", Option.Port );
 			fprintf( stderr, "pond splash\n");
-			pthread_create( &pondd, NULL, &pondsplash, NULL );
+			pondd = SDL_CreateThread( pondsplash, "pondsplash", NULL );
 			fputs("pond ripple\n", stderr );
-			pthread_create( &pondc, NULL, &pondripple, Option.Server );
+			pondc = SDL_CreateThread( pondripple, "pondripple", Option.Server );
 		}
 		hitanykey();
 		racketplay( 0, -1 ); // background music

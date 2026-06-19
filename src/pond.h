@@ -94,12 +94,12 @@ typedef struct						// broadcast of game data
 } MSGRTOAD;
 
 // server
-void *pondsplash( void* ); // main thread
+int pondsplash( void* ); // main thread
 int pondserverinit( void );
 int pondsplashupdate( void );
 int pondserversignupplayer( char*, char* );
 // client
-void *pondripple( void* ); // main thread
+int pondripple( void* ); // main thread
 int pondclientinit( char* );
 int pondclientsignup( void );
 int pondrippleupdate( void );
