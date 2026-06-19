@@ -5,5 +5,5 @@ Name=Frogs of War II
 Comment=Inexplicable frog related game
 Exec=frogs
 Icon=@pkgdatadir@/bmp/frog4.ico
-Categories=Game;ActionGame;
+Categories=Game;ActionGame;Games;
 Terminal=false

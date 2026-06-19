@@ -535,7 +535,9 @@ void draw()
 		rect.h = CONTROLSHEIGHT;
 		SDL_SetClipRect( Screen, &rect );
 		if ( Helmon )
+		{
 			helmdraw( Screen );
+		}
 	}
 }
 

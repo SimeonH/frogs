@@ -101,7 +101,7 @@ void roomdraw( SDL_Surface *surface )
 	RECT vport; // me's viewport in world coords
 	RECT cover; // cover up the ragged edges
 	
-	if ( Room.change ) // reset changed room flag 
+	if ( Room.change ) // reset changed room flag
 	{
 		Room.change = 0;
 		if ( Room.backtile != NULL )

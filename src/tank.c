@@ -65,7 +65,6 @@ void tankinit( void )
 	SDL_SetSurfacePalette(Tank.tanktile, Screen->format->palette);
 	SDL_SetColorKey(Tank.tanktile, SDL_TRUE, 185 );
 	tankparseSpriteFile( Tank.spritename );
-	fprintf( stderr, "tank count: %d\n", Tank.spritecount);
 	Tank.change = 0;
 	Tank.show = 1;
 }
@@ -112,7 +111,6 @@ void tankdraw( SDL_Surface *surface )
 		SDL_SetSurfacePalette(Tank.tanktile, Screen->format->palette);
 		SDL_SetColorKey(Tank.tanktile, SDL_TRUE, 185 );
 		tankparseSpriteFile( Tank.spritename );
-		fprintf( stderr, "tank count: %d\n", Tank.spritecount);
 		Tank.change = 0;
 	}
 
