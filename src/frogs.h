@@ -19,6 +19,10 @@
 //    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 //--------------------------------------------------------------------------------
+#ifndef PKGDATADIR
+#define PKGDATADIR "."
+#endif
+
 #define FROGNET 			0
 #define CURSOR				1
 #define COLORDEPTH		 	8

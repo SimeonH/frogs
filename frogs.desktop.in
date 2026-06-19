@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Frogs of War II
+Comment=Inexplicable frog related game
+Exec=frogs
+Icon=@pkgdatadir@/bmp/frog4.ico
+Categories=Game;ActionGame;
+Terminal=false

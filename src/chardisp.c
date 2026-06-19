@@ -57,7 +57,7 @@ void chardispinit( void )
 		Chardisp.Alphabet[ i ].w = CHARWIDE;
 	}
 	
-	Chardisp.lpAlphabet = SDL_LoadBMP( "bmp/alphabet.bmp" );
+	Chardisp.lpAlphabet = SDL_LoadBMP( PKGDATADIR "/bmp/alphabet.bmp" );
 	SDL_SetSurfacePalette( Chardisp.lpAlphabet, Screen->format->palette );
 	SDL_SetColorKey( Chardisp.lpAlphabet, SDL_TRUE, 185 );
 	chardispclear();
@@ -76,7 +76,7 @@ void chardispdestroy( void )
 //-----------------------------------------------------------------
 void chardisprestoreSurfaces( void )
 {
-	Chardisp.lpAlphabet = SDL_LoadBMP( "bmp/alphabet.bmp" );
+	Chardisp.lpAlphabet = SDL_LoadBMP( PKGDATADIR "/bmp/alphabet.bmp" );
 }
 //-----------------------------------------------------------------
 // draw( LPDIRECTDRAWSURFACE ) rock through the lines to display and blt our rects

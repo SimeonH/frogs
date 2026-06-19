@@ -28,6 +28,26 @@ configure
 # --- automake dependency tracking ---
 src/.deps/
 
+# --- generated desktop file (built from frogs.desktop.in) ---
+frogs.desktop
+
 # --- editor backups and swap files ---
 *~
 *.swp
+.VSCodeCounter/2026-06-18_23-01-00/details.md
+.gitignore
+.VSCodeCounter/2026-06-18_23-01-00/diff-details.md
+.VSCodeCounter/2026-06-18_23-01-00/diff.csv
+.VSCodeCounter/2026-06-18_23-01-00/diff.md
+.VSCodeCounter/2026-06-18_23-01-00/diff.txt
+.VSCodeCounter/2026-06-18_23-01-00/results.csv
+.VSCodeCounter/2026-06-18_23-01-00/results.json
+.VSCodeCounter/2026-06-18_23-01-00/results.md
+.VSCodeCounter/2026-06-18_23-01-00/results.txt
+autom4te.cache/output.0
+autom4te.cache/output.1
+autom4te.cache/output.2
+autom4te.cache/requests
+autom4te.cache/traces.0
+autom4te.cache/traces.1
+autom4te.cache/traces.2

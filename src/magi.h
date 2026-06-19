@@ -28,7 +28,7 @@ typedef struct
     short show;             // turn on off drawing
     short status;           // if !0 fatal error occurred at init
     short delay;            // time to show magi and play sound
-    char name[ 32 ];        // name of the bitmap or resource
+    char name[ 256 ];       // name of the bitmap or resource
     RECT dest; 			// destination of bitmap
     RECT sport; 			// target  rectangle of bitmap
 } MAGI;

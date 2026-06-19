@@ -35,8 +35,8 @@
 typedef struct    
 {
     SDL_Surface *tanktile;   
-    char bmpname[ 32 ];
-    char spritename[ 32 ];
+    char bmpname[ 256 ];
+    char spritename[ 256 ];
     short show;
     short status; // if !0 fatal error occurred in constructor
     short change; // load new sprites

@@ -36,10 +36,10 @@ typedef struct
 typedef struct
 {
 	SDL_Surface *backtile;		 // basic tile
-	char tilename[ 32 ];
+	char tilename[ 256 ];
 	SDL_Surface *backdecor; // decorative background graphics
-	char decorname[ 32 ];
-	char spritename[ 32 ];
+	char decorname[ 256 ];
+	char spritename[ 256 ];
 	short show; // turn on/off drawing
 	short status; // if !0 fatal error occurred in constructor
 	short change; // load a new tile

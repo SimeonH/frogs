@@ -149,7 +149,7 @@ void racketstart()
 	Uint16 audio_format = AUDIO_S16SYS;
 	int audio_channels = 2;
 	int audio_buffers = Option.Soundbufsz;
-	char path[256] = "wav/racket.elf";
+	char path[256] = PKGDATADIR "/wav/racket.elf";
 	char comstr[256] = "";
 	char *text = NULL;
 	char *place;
@@ -194,7 +194,7 @@ void racketstart()
 	
 						case 119: // w wave
 							nextarg = (char *)strtok( NULL, "\n" );
-							sprintf( path, "wav/%s.wav", nextarg );
+							sprintf( path, PKGDATADIR "/wav/%s.wav", nextarg );
 							Noise[ i ] = Mix_LoadWAV( path );
 							if(Noise[ i ] == NULL) 
 							fprintf( stderr, "error load %s: %s\n", path, Mix_GetError());

@@ -92,13 +92,13 @@ void ceorestoreSurfaces( void )
 //-----------------------------------------------------------------
 void ceochangeCeo( void )
 {
-	char dname[ 32 ] = "";
+	char dname[ 256 ] = "";
 
-	sprintf( dname, "bmp/%s.bmp", Ceo.name );
+	sprintf( dname, PKGDATADIR "/bmp/%s.bmp", Ceo.name );
 	Ceo.lpCeo = SDL_LoadBMP( dname );
 	SDL_SetSurfacePalette( Ceo.lpCeo, Screen->format->palette );
 	SDL_SetColorKey( Ceo.lpCeo, SDL_TRUE, 185 );
-	sprintf( dname, "bmp/%sd.bmp", Ceo.name );
+	sprintf( dname, PKGDATADIR "/bmp/%sd.bmp", Ceo.name );
 	Ceo.lpCeod = SDL_LoadBMP( dname );
 	SDL_SetSurfacePalette( Ceo.lpCeod, Screen->format->palette );
 	SDL_SetColorKey( Ceo.lpCeod, SDL_TRUE, 185 );

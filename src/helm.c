@@ -48,8 +48,8 @@ void helminit( void )
 	Helm.show = 1;
 	Helm.curtool = 0;
 
-	Helm.controls = SDL_LoadBMP( "bmp/control.bmp" );
-	Helm.hands = SDL_LoadBMP( "bmp/hands.bmp" );
+	Helm.controls = SDL_LoadBMP( PKGDATADIR "/bmp/control.bmp" );
+	Helm.hands = SDL_LoadBMP( PKGDATADIR "/bmp/hands.bmp" );
 	SDL_SetSurfacePalette(Helm.controls, Screen->format->palette);
 	SDL_SetSurfacePalette(Helm.hands, Screen->format->palette);
 	SDL_SetColorKey(Helm.controls, SDL_TRUE, 185 );
@@ -355,8 +355,8 @@ void helmdraw( SDL_Surface *surface )
 //-----------------------------------------------------------------
 void helmrestoreSurfaces( void )
 {
-	loadbmp( Helm.controls, "bmp/control.bmp", 0 );
-	loadbmp( Helm.hands, "bmp/hands.bmp", 0 );
+	loadbmp( Helm.controls, PKGDATADIR "/bmp/control.bmp", 0 );
+	loadbmp( Helm.hands, PKGDATADIR "/bmp/hands.bmp", 0 );
 }
 //-----------------------------------------------------------------
 //

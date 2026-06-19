@@ -61,7 +61,7 @@ short Me = 0;
 short Yodaddy; // index of current server in player array
 short Winner = -1;
 short Helmon = 1;
-char Bots[80] = "doc/robots1.txt";
+char Bots[80] = PKGDATADIR "/doc/robots1.txt";
 // -- pond 
 FROGCOMMAND Cmd; 
 int Nrate = 125; // default network time cycle 
@@ -422,10 +422,10 @@ short doevents()
 					  	chardispaddaline( "esc or q to quit" );
 						break;
 					case SDLK_F2:
-						chardispbull( "doc/bull2.txt" );
+						chardispbull( PKGDATADIR "/doc/bull2.txt" );
 						break;
 					case SDLK_F3:
-						chardispbull( "doc/bull1.txt" );
+						chardispbull( PKGDATADIR "/doc/bull1.txt" );
 						break;
 					case SDLK_F4:
 						chardispclear();
@@ -695,7 +695,7 @@ int main( int argc, char **argv )
 	{
 		SDL_SetClipRect(Screen, &rect);
 		SDL_ShowCursor( 1 );
-		loadbmp( Screen, "bmp/liz.bmp", 1 );
+		loadbmp( Screen, PKGDATADIR "/bmp/liz.bmp", 1 );
 		flipscreen();
 		racketplay( 15, 0 ); // opening blast always first song in racket.elf
 		playerresetAll();
@@ -735,7 +735,7 @@ int main( int argc, char **argv )
 		rect.w = SCREENWIDTH;
 		rect.h = SCREENHEIGHT;
 		SDL_SetClipRect(Screen, &rect);
-		loadbmp( Screen, "bmp/grimfrog.bmp", 0 );
+		loadbmp( Screen, PKGDATADIR "/bmp/grimfrog.bmp", 0 );
 		chardispdestroy();
 		magidestroy();
 		ceodestroy();

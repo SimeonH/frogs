@@ -379,9 +379,9 @@ void roomforeground( POINT *split, RECT *vport, SDL_Surface *surface )
 //-----------------------------------------------------------------
 void roomchangeBackground( char *newtilepath )
 {
-	sprintf( Room.tilename, "bmp/%st.bmp", newtilepath );  // t for tile bitmap
-	sprintf( Room.decorname, "bmp/%sd.bmp", newtilepath ); // d for decor bitmap
-	sprintf( Room.spritename, "bmp/%s.elf", newtilepath ); // sprite description file
+	sprintf( Room.tilename, PKGDATADIR "/bmp/%st.bmp", newtilepath );
+	sprintf( Room.decorname, PKGDATADIR "/bmp/%sd.bmp", newtilepath );
+	sprintf( Room.spritename, PKGDATADIR "/bmp/%s.elf", newtilepath );
 	Room.change = 1;
 }
 

@@ -52,7 +52,7 @@ extern short Me; // my place in player array
 void magichangeMagi( char *newbmp )
 {
 	magidestroy();
-	sprintf( Magi.name, "bmp/%s.bmp", newbmp );
+	sprintf( Magi.name, PKGDATADIR "/bmp/%s.bmp", newbmp );
 	Magi.lpMagi = SDL_LoadBMP( Magi.name );
 	SDL_SetSurfacePalette( Magi.lpMagi, Screen->format->palette );
 	SDL_SetColorKey( Magi.lpMagi, SDL_TRUE, 185 );

@@ -57,8 +57,8 @@ void tankinit( void )
 	Tank.missle = NULL;
 	Tank.misslecount = 0;
 	Tank.tanktile = NULL;
-	strcpy( Tank.bmpname, "bmp/tank.bmp" );   // t for tile bitmap
-	strcpy( Tank.spritename, "bmp/tank.elf" );   // sprite description file
+	strcpy( Tank.bmpname, PKGDATADIR "/bmp/tank.bmp" );
+	strcpy( Tank.spritename, PKGDATADIR "/bmp/tank.elf" );
 	/* see also tank change */
 	Tank.missle = (SPRITE *)calloc( MISSLECOUNT + 1, sizeof(SPRITE));
 	Tank.tanktile = SDL_LoadBMP( Tank.bmpname );
@@ -524,8 +524,8 @@ void tankmove( void )
 //-----------------------------------------------------------------
 void tankchangeTanks( char *newtilepath )
 {
-	sprintf( Tank.bmpname, "bmp/%s.bmp", newtilepath );   // t for tile bitmap
-	sprintf( Tank.spritename, "bmp/%s.elf", newtilepath );   // sprite description file
+	sprintf( Tank.bmpname, PKGDATADIR "/bmp/%s.bmp", newtilepath );
+	sprintf( Tank.spritename, PKGDATADIR "/bmp/%s.elf", newtilepath );
 	Tank.change = 1;
 }
 

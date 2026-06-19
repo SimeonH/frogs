@@ -14,5 +14,6 @@ frogs_SOURCES = \
 	tank.c tank.h \
 	util.c util.h
 
+AM_CPPFLAGS   = -DPKGDATADIR=\"$(pkgdatadir)\"
 frogs_CFLAGS  = $(SDL2_CFLAGS) $(SDL2_MIXER_CFLAGS)
 frogs_LDADD   = $(SDL2_LIBS) $(SDL2_MIXER_LIBS)
