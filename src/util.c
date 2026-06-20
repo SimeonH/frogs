@@ -213,7 +213,7 @@ short loadRobotsFile( char *bots )
 	char *text = 0;
 	char *place;
 
-	hfile = open( bots, O_RDONLY );
+	hfile = open( bots, O_RDONLY | O_BINARY );
 	if ( hfile > 0 )
 	{
 		sizeofile = lseek( hfile, 0L, SEEK_END );
@@ -224,7 +224,7 @@ short loadRobotsFile( char *bots )
 			text[ sizeofile ] = '\0';
 			place = text;
 			actual = read( hfile, text, sizeofile );
-			if ( actual == sizeofile )
+			if ( actual > 0 )
 			{
 				while( !retval && nextCommand( place, comstr ))
 				{

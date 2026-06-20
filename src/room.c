@@ -482,7 +482,7 @@ int roomparseSpriteFile( char *elfname )
 	int retval = 0, elfnum = 0, flooring = 0, topnum = 0, thiself = 0, actnum = 0, lastarg = 0;
 	int i, j, cmd, left, top, right, bottom, plusx, plusy, len, x, y, z;
 	
-	rfile = open( elfname,  O_RDONLY );
+	rfile = open( elfname,  O_RDONLY | O_BINARY );
 	if ( rfile < 1 )
 			retval = 1;
 	if ( ! retval )
@@ -493,7 +493,7 @@ int roomparseSpriteFile( char *elfname )
 		place = text;
 		lseek( rfile, 0L, SEEK_SET );
 		actual = read( rfile, text, sizeofile );
-		if ( actual == sizeofile )
+		if ( actual > 0 )
 		{
 			while( roomnextCommand( place, comstr )) // first how many 9 level and how big a room
 			{

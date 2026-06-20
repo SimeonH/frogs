@@ -15,4 +15,16 @@
 #  include <netinet/in.h>
 #endif
 
+/* The game's data files (*.elf, robots*.txt) use CRLF line endings. On Windows
+   open()/read() default to text mode and translate CRLF->LF, so read() returns
+   fewer bytes than the file size and parsers that check actual==sizeofile bail
+   out, leaving arrays unallocated and causing NULL writes. Open such files with
+   O_BINARY. fcntl.h is included here first so that on Windows its real O_BINARY
+   is picked up; on POSIX (where no translation happens and O_BINARY is
+   undefined) it maps to 0. */
+#include <fcntl.h>
+#ifndef O_BINARY
+#  define O_BINARY 0
+#endif
+
 #endif /* FROGS_COMPAT_H */

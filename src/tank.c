@@ -598,7 +598,7 @@ int tankparseSpriteFile( char *elfname )
 	char *nextarg;
 	int retval = 0, elfnum = 0, i, cmd, left, top, right, bottom;
 
-	rfile = open( elfname,  O_RDONLY );
+	rfile = open( elfname,  O_RDONLY | O_BINARY );
 	if ( rfile < 1 )
 			retval = 1;
 	if ( ! retval )
@@ -610,7 +610,7 @@ int tankparseSpriteFile( char *elfname )
 		lseek( rfile, 0L, SEEK_SET );
 		actual = read( rfile, text, sizeofile );
 
-		if ( actual == sizeofile )
+		if ( actual > 0 )
 		{
 			while( tanknextCommand( place, comstr ))
 			{
@@ -683,12 +683,14 @@ int tankparseSpriteFile( char *elfname )
 			if ( ! retval )
 				retval = 2;
 		}
-		if ( text != NULL ) 
+		if ( text != NULL )
 			free( text );
 		close( rfile );
 		for ( i = 0; i < Tank.spritecount; i++ )
+		{
 			Tank.sprite[ i ].curframe = 0;
 			Tank.sprite[ i ].pindex = -1;
+		}
 	}
 	
 	return retval;

@@ -227,18 +227,18 @@ void chardispbull( char *fname )
 	char *text = NULL;
 	char str[ MAXLENGTH + 1];
 	
-	hfile = open( fname, O_RDONLY );
-	
+	hfile = open( fname, O_RDONLY | O_BINARY );
+
 	if ( hfile > 1 )
 	{
 		sizeofile = lseek( hfile, 0L, SEEK_END );
 		lseek( hfile, 0L, SEEK_SET );
-		text = (char *)calloc( sizeofile + 1, sizeof(char));	
+		text = (char *)calloc( sizeofile + 1, sizeof(char));
 		actual = read( hfile, text, sizeofile );
 		text[ sizeofile ] = '\0';
 		str[ 0 ] = '\0';
 		chardispclear();
-		if ( actual == sizeofile )
+		if ( actual > 0 )
 		{
 			memset( str, '\0', sizeof( str ));
 			while ( i < sizeofile && j < MAXLENGTH ) // if line is too long bail out

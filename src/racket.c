@@ -29,9 +29,6 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#ifndef O_BINARY
-#define O_BINARY 0
-#endif
 #include <SDL.h>
 #include <SDL_mixer.h>
 #include "frogs.h"
