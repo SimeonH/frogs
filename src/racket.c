@@ -29,6 +29,9 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#ifndef O_BINARY
+#define O_BINARY 0
+#endif
 #include <SDL.h>
 #include <SDL_mixer.h>
 #include "frogs.h"
@@ -165,7 +168,7 @@ void racketstart()
 		exit(1);
 	}
 
-	rfile = open( path,  O_RDONLY );
+	rfile = open( path, O_RDONLY | O_BINARY );
 	if ( rfile > 1 )
 	{
 		sizeofile = lseek( rfile, 0L, SEEK_END );
@@ -176,7 +179,7 @@ void racketstart()
 			text[ sizeofile ] = '\0';
 			place = text;
 			actual = read( rfile, text, sizeofile );
-			if ( actual == sizeofile )
+			if ( actual > 0 )
 			{
 				while( racketnextCommand( place, comstr )) // first how many sounds
 				{
@@ -190,7 +193,7 @@ void racketstart()
 						case 35: // # total sound count
 							nextarg = (char *)strtok( NULL, "\n" );
 							Racketnum = atoi( nextarg ); // now we can initialize noise array
-							Noise = (Mix_Chunk**)calloc( Racketnum + 1, sizeof(Mix_Chunk));
+							Noise = (Mix_Chunk**)calloc( Racketnum + 1, sizeof(Mix_Chunk*));
 							break;
 	
 						case 119: // w wave

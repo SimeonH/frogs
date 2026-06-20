@@ -33,6 +33,11 @@ set(SOURCES
 add_executable(frogs ${SOURCES})
 
 if(WIN32)
+    configure_file(frogs.rc.in ${CMAKE_CURRENT_BINARY_DIR}/frogs.rc @ONLY)
+    target_sources(frogs PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/frogs.rc)
+endif()
+
+if(WIN32)
     set(_pkgdatadir_default ".")
 else()
     set(_pkgdatadir_default "${CMAKE_INSTALL_FULL_DATADIR}/frogs")
