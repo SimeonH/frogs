@@ -114,7 +114,7 @@ int pondsplashupdate( void )
 
 	alen = sizeof( a );
 	memset( &a.sin_zero, 0, sizeof( a.sin_zero ));
-	ret = recvfrom( Server.sock, &buf, MAXLOAD, flags, (struct sockaddr*)&a, &alen );
+	ret = recvfrom( Server.sock, buf, MAXLOAD, flags, (struct sockaddr*)&a, &alen );
 	if ( ret > 8 )
 	{
 		switch( buf[ 1 ] )
@@ -276,7 +276,7 @@ int pondsplashupdate( void )
 			dmsg.yodaddy = Me;
 			a.sin_port = htons( Option.Port );
 			memcpy( dmsg.boys, Player, sizeof( PLAYER ) * PLAYERMAX );
-			ret = sendto( Server.sock, &dmsg, sizeof(dmsg), 0, (struct sockaddr*)&a, sizeof( a ));
+			ret = sendto( Server.sock, (const char*)&dmsg, sizeof(dmsg), 0, (struct sockaddr*)&a, sizeof( a ));
 #ifndef SHUTUP
 			fprintf( stderr, "msgD OUT %s on %d size:%d\n", inet_ntoa(a.sin_addr), ntohs(a.sin_port), ret );
 #endif
@@ -288,7 +288,7 @@ int pondsplashupdate( void )
 			{
 				memcpy( &cmsg.girls[ i ], &Tank.missle[ i ], sizeof ( SPRITEDATA ));
 			}
-			ret = sendto( Server.sock, &cmsg, sizeof(MSGCTOAD), 0, (struct sockaddr*)&a, sizeof(a));
+			ret = sendto( Server.sock, (const char*)&cmsg, sizeof(MSGCTOAD), 0, (struct sockaddr*)&a, sizeof(a));
 #ifndef SHUTUP
 			fprintf( stderr, "msgC OUT %s:%d size:%d\n", inet_ntoa(a.sin_addr), ntohs(a.sin_port), ret );
 #endif
@@ -308,7 +308,7 @@ int pondsplashupdate( void )
 					rmsg.yodaddy = Me;
 					a.sin_port = htons( Option.Port );
 					memcpy( rmsg.boys, Roster, sizeof( ROSTER ) * PLAYERMAX );
-					ret = sendto( Server.sock, &rmsg, sizeof(rmsg), 0, (struct sockaddr*)&a, sizeof( a ));
+					ret = sendto( Server.sock, (const char*)&rmsg, sizeof(rmsg), 0, (struct sockaddr*)&a, sizeof( a ));
 #ifndef SHUTUP
 					fprintf( stderr, "msgR OUT %s on %d size:%d\n", inet_ntoa(a.sin_addr), ntohs(a.sin_port), ret );
 #endif
@@ -327,7 +327,11 @@ int pondclientinit( char *host )
 {
 	if (( CurrentHost = gethostbyname( host ))== NULL )
 	{
+#ifdef _WIN32
+		fprintf(stderr, "gethostbyname: error %d\n", WSAGetLastError());
+#else
 		herror("gethostbyname");
+#endif
 		exit(1);
 	}
 	fprintf( stderr, "Server name: %s\n", CurrentHost->h_name );
@@ -430,7 +434,7 @@ int pondclientMsgA(short id, char type, char *load )
 	memset( &Client.addr.sin_zero, 0, sizeof(Client.addr.sin_zero ));
 
 	// return ( send( Client.sock, &msg, sizeof(msg), 0 ));
-	return ( sendto( Client.sock, &msg, sizeof(msg), 0, \
+	return ( sendto( Client.sock, (const char*)&msg, sizeof(msg), 0, \
 		(struct sockaddr *)&Client.addr, sizeof(struct sockaddr)));
 }
 
@@ -455,7 +459,7 @@ int pondclientMsgB(short id, char type, char load )
 	memset( &Client.addr.sin_zero, 0, sizeof( Client.addr.sin_zero ));
 
 	//return ( send( Client.sock, &msg, sizeof(msg), 0 ));
-	return ( sendto( Client.sock, &msg, sizeof(msg), 0, \
+	return ( sendto( Client.sock, (const char*)&msg, sizeof(msg), 0, \
 		(struct sockaddr *)&Client.addr, sizeof(struct sockaddr)));
 }
 

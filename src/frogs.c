@@ -19,6 +19,13 @@
 //    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 //--------------------------------------------------------------------------------
+#ifdef _WIN32
+#  include <winsock2.h>
+#  include <ws2tcpip.h>
+#else
+#  include <sys/socket.h>
+#  include <netinet/in.h>
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>

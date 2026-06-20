@@ -21,13 +21,6 @@
 //--------------------------------------------------------------------------------
 // pond - frog network community
 //--------------------------------------------------------------------------------
-#ifdef _WIN32
-#  include <winsock2.h>
-#  include <ws2tcpip.h>
-#else
-#  include <sys/socket.h>
-#  include <netinet/in.h>
-#endif
 #define MAXMSGLENGTH 64 		  // load size to server
 #define MAXLOAD 1480			  // max load size from server
 

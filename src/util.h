@@ -20,11 +20,13 @@
 //
 //--------------------------------------------------------------------------------
 
+#ifndef _WIN32
 typedef struct
 {
 	int x;
 	int y;
 } POINT;
+#endif
 
 int nextCommand( char *, char * );
 void loadbmp( SDL_Surface *, char *, int );
