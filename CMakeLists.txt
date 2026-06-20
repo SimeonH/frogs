@@ -32,9 +32,15 @@ set(SOURCES
 
 add_executable(frogs ${SOURCES})
 
-target_compile_definitions(frogs PRIVATE
-    "PKGDATADIR=\"${CMAKE_INSTALL_FULL_DATADIR}/frogs\""
-)
+if(WIN32)
+    set(_pkgdatadir_default ".")
+else()
+    set(_pkgdatadir_default "${CMAKE_INSTALL_FULL_DATADIR}/frogs")
+endif()
+set(PKGDATADIR "${_pkgdatadir_default}" CACHE STRING
+    "Runtime path to game data directory (use . for portable/bundled builds)")
+
+target_compile_definitions(frogs PRIVATE "PKGDATADIR=\"${PKGDATADIR}\"")
 
 # SDL2 link
 if(TARGET SDL2::SDL2)
