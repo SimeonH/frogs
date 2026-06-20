@@ -1,0 +1,90 @@
+name: Package
+
+on:
+  push:
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+jobs:
+  version:
+    name: Resolve version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.v.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Determine version
+        id: v
+        shell: bash
+        run: |
+          # On a v* tag use the tag; otherwise fall back to the PKGBUILD pkgver.
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            version="${GITHUB_REF#refs/tags/v}"
+          else
+            version="$(sed -n 's/^pkgver=//p' packaging/arch/PKGBUILD)"
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Resolved version: $version"
+
+  tarball:
+    name: Clean source tarball
+    needs: version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create tarball
+        env:
+          VERSION: ${{ needs.version.outputs.version }}
+        run: |
+          mkdir -p dist
+          # git archive ships only tracked files; .gitattributes export-ignore
+          # strips .github/ and packaging/ for a clean release tarball.
+          git archive --format=tar.gz \
+            --prefix="frogs-$VERSION/" \
+            -o "dist/frogs-$VERSION.tar.gz" HEAD
+          echo "Contents:"
+          tar tzf "dist/frogs-$VERSION.tar.gz" | head -n 40
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frogs-source
+          path: dist/*.tar.gz
+
+  arch:
+    name: Arch package
+    needs: [ version, tarball ]
+    runs-on: ubuntu-latest
+    container: archlinux:latest
+    steps:
+      - name: Install build tooling
+        run: pacman -Syu --noconfirm base-devel cmake sdl2 sdl2_mixer git
+
+      - uses: actions/checkout@v4
+
+      - name: Fetch source tarball
+        uses: actions/download-artifact@v4
+        with:
+          name: frogs-source
+          path: packaging/arch
+
+      - name: Build package
+        env:
+          VERSION: ${{ needs.version.outputs.version }}
+        run: |
+          # makepkg refuses to run as root, so build as an unprivileged user.
+          useradd -m builder
+          chown -R builder packaging/arch
+          # Keep PKGBUILD pkgver in sync with the resolved version. The tarball
+          # we just downloaded is named frogs-$VERSION.tar.gz, so makepkg finds
+          # it locally and skips the download of the release URL.
+          sed -i "s/^pkgver=.*/pkgver=$VERSION/" packaging/arch/PKGBUILD
+          cd packaging/arch
+          sudo -u builder makepkg -f --noconfirm
+          ls -1 *.pkg.tar.zst
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frogs-arch-package
+          path: packaging/arch/*.pkg.tar.zst

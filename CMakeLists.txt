@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(FrogsOfWarII C)
+project(FrogsOfWarII VERSION 2.2 LANGUAGES C)
 
 set(CMAKE_C_STANDARD 99)
 
@@ -85,7 +85,9 @@ install(DIRECTORY bmp wav doc
 )
 
 if(UNIX AND NOT APPLE)
-    set(PKGDATADIR "${CMAKE_INSTALL_FULL_DATADIR}/frogs")
+    # frogs.desktop.in uses @pkgdatadir@ (lowercase, shared with the autotools
+    # build); configure_file(@ONLY) matches the variable name case-sensitively.
+    set(pkgdatadir "${CMAKE_INSTALL_FULL_DATADIR}/frogs")
     configure_file(frogs.desktop.in frogs.desktop @ONLY)
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/frogs.desktop
         DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
