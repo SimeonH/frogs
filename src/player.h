@@ -19,8 +19,6 @@
 //    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 //--------------------------------------------------------------------------------
-#include <netinet/in.h>
-
 //-------------- actions as in what kind of guy am i ...correspond to tank.elf sprite number
 #define WALKTOAD  0	 // normal walking
 #define TURNTOAD  1	 // face front used in changing directions

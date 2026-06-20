@@ -39,4 +39,6 @@ unsigned int timeleft(unsigned int);
 void SDL_BlitFlop(SDL_Surface *, RECT *, SDL_Surface *, RECT * );
 void whowon( void );
 short clip( RECT *, RECT * );
+#ifndef _WIN32
 void strlwr( char* );
+#endif
