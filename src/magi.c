@@ -23,6 +23,7 @@
 // It appears delay / frame rate seconds after death, 
 // stays for delay / frame rate seconds vanishes appears until player reborn
 //----------------------
+#include "compat.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

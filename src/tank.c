@@ -21,6 +21,7 @@
 //--------------------------------------------------------------------------------
 // ties together player, room, sounds, images as active sprites
 //--------------------------------------------------------------------------------
+#include "compat.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

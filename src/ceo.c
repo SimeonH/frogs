@@ -22,6 +22,7 @@
 // the frog ceo is a spectre placed on the background when a player wins,
 // appears until another player is reborn
 //--------------------------------------------------------------------------------
+#include "compat.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -21,6 +21,7 @@
 //--------------------------------------------------------------------------------
 // noise array maintainer and sound mixer interface
 //--------------------------------------------------------------------------------
+#include "compat.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

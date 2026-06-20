@@ -21,6 +21,7 @@
 //--------------------------------------------------------------------------------
 // associate a set of rectangles and a bitmap with it's characteristics
 //--------------------------------------------------------------------------------
+#include "compat.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <SDL.h>

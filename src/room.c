@@ -21,6 +21,7 @@
 //--------------------------------------------------------------------------------
 // the scenery, background, foreground, and walkable surfaces manager
 //--------------------------------------------------------------------------------
+#include "compat.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
